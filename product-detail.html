@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ChemiPure • High-Purity Research Compounds</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  body { background: linear-gradient(rgba(248,250,252,0.95), rgba(248,250,252,0.95)), url('https://picsum.photos/id/1015/2000/1200') center/cover fixed; }
+  .top-bar { font-size: 13px; letter-spacing: 0.5px; }
+</style>
+</head>
+<body class="text-slate-800">
+
+<!-- TOP BAR -->
+<div class="bg-slate-900 text-white top-bar py-2.5">
+  <div class="max-w-7xl mx-auto px-8 flex justify-between">
+    <div class="flex gap-8">
+      <span onclick="showLogin()" class="cursor-pointer hover:text-emerald-400">Login</span>
+      <span onclick="showSignup()" class="cursor-pointer hover:text-emerald-400">Sign Up</span>
+      <span onclick="window.location='enquiry.html'" class="cursor-pointer hover:text-emerald-400">Bulk Enquiry</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <span onclick="window.location='cart.html'" class="cursor-pointer flex items-center gap-2 hover:text-emerald-400">
+        <i class="fa-solid fa-cart-shopping"></i> Cart <span id="topCart" class="bg-emerald-500 px-2 rounded-full text-xs">0</span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-8 py-12 flex gap-12">
+  <div class="w-5/12">
+    <img id="prodImg" class="w-full rounded-3xl shadow" src="">
+    <div class="mt-8 text-center">
+      <p class="text-xs text-slate-500">2D Structure</p>
+      <img id="structure" class="mx-auto mt-4" src="">
+    </div>
+  </div>
+  
+  <div class="flex-1">
+    <h1 id="name" class="text-4xl font-semibold"></h1>
+    <p id="cas" class="font-mono text-emerald-600 text-xl mt-1"></p>
+    
+    <div class="flex gap-8 my-10 text-lg">
+      <div><span class="block text-xs text-slate-500">MW</span><span id="mw" class="font-bold"></span></div>
+      <div><span class="block text-xs text-slate-500">Purity</span><span class="font-bold text-emerald-600">99%</span></div>
+    </div>
+    
+    <div class="border-t border-b py-8">
+      <div class="flex border-b mb-6">
+        <button onclick="tab(0)" class="tab active px-8 py-3 font-medium">Specifications</button>
+        <button onclick="tab(1)" class="tab px-8 py-3 font-medium">Safety &amp; Handling</button>
+      </div>
+      <div id="tabContent" class="text-slate-600 leading-relaxed"></div>
+    </div>
+    
+    <div class="mt-10">
+      <p class="text-sm text-slate-500">Pack size &amp; price</p>
+      <div class="flex gap-6 mt-4">
+        <button onclick="addToCart()" class="flex-1 border-2 border-emerald-600 rounded-3xl py-5 font-semibold">1 g – $24.50</button>
+        <button onclick="addToCart()" class="flex-1 border border-slate-300 rounded-3xl py-5 font-semibold">5 g – $89.00</button>
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+
+<!-- HERO -->
+<div class="max-w-7xl mx-auto px-8 py-16 text-center">
+  <h1 class="text-6xl font-bold mb-4">Premium Organic Compounds</h1>
+  <p class="text-2xl text-slate-600">For research labs worldwide • COA included • 98%+ purity</p>
+  <a href="shop.html" class="mt-10 inline-block bg-emerald-600 text-white px-12 py-5 rounded-3xl text-lg font-semibold">Browse Catalog →</a>
+</div>
+
+<!-- FEATURED -->
+<div class="max-w-7xl mx-auto px-8 pb-20">
+  <h2 class="text-3xl font-semibold mb-8">Featured Products</h2>
+  <div id="featured" class="grid grid-cols-4 gap-8"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-slate-400 py-12">
+  <div class="max-w-7xl mx-auto px-8 text-center">
+    <div class="text-4xl font-mono text-emerald-400 mb-2" id="liveCount">128</div>
+    <p class="text-xs uppercase tracking-widest">Researchers browsing right now</p>
+    <p class="mt-8 text-xs">© 2026 ChemiPure • Research Use Only</p>
+  </div>
+</footer>
+
+<script>
+// Sample products (same in all files)
+const products = [
+  {id:1, n<script>
+const urlParams = new URLSearchParams(window.location.search);
+const id = parseInt(urlParams.get('id'));
+
+const products = [ /* same array as index.html */ ];
+
+const p = products.find(x => x.id === id);
+
+document.getElementById('prodImg').src = p.img;
+document.getElementById('structure').src = p.structure;
+document.getElementById('name').textContent = p.name;
+document.getElementById('cas').textContent = p.cas;
+document.getElementById('mw').textContent = "172.02 g/mol";
+
+function tab(n) {
+  document.querySelectorAll('.tab').forEach((el,i) => el.classList.toggle('active', i===n));
+  document.getElementById('tabContent').innerHTML = n===0 ? 
+    `<p><strong>IUPAC Name:</strong> ${p.name}</p><p class="mt-4">Molecular Formula: C₆H₆BrN</p><p class="mt-4">Appearance: Off-white crystalline solid</p>` :
+    `<div class="bg-red-50 p-6 rounded-3xl">Harmful if swallowed • Causes skin irritation<br><a href="#" class="text-emerald-600 underline">Download MSDS (PDF)</a></div>`;
+}
+
+function addToCart() { alert("Added to cart!"); }
+</script>
+</body>
+</html>

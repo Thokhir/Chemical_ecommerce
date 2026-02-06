@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ChemiPure • High-Purity Research Compounds</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  body { background: linear-gradient(rgba(248,250,252,0.95), rgba(248,250,252,0.95)), url('https://picsum.photos/id/1015/2000/1200') center/cover fixed; }
+  .top-bar { font-size: 13px; letter-spacing: 0.5px; }
+</style>
+</head>
+<body class="text-slate-800">
+
+<!-- TOP BAR -->
+<div class="bg-slate-900 text-white top-bar py-2.5">
+  <div class="max-w-7xl mx-auto px-8 flex justify-between">
+    <div class="flex gap-8">
+      <span onclick="showLogin()" class="cursor-pointer hover:text-emerald-400">Login</span>
+      <span onclick="showSignup()" class="cursor-pointer hover:text-emerald-400">Sign Up</span>
+      <span onclick="window.location='enquiry.html'" class="cursor-pointer hover:text-emerald-400">Bulk Enquiry</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <span onclick="window.location='cart.html'" class="cursor-pointer flex items-center gap-2 hover:text-emerald-400">
+        <i class="fa-solid fa-cart-shopping"></i> Cart <span id="topCart" class="bg-emerald-500 px-2 rounded-full text-xs">0</span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<!-- ... same head, top-bar, nav as index.html ... -->
+
+<div class="max-w-7xl mx-auto px-8 py-12">
+  <h1 class="text-4xl font-semibold mb-10">All Organic Building Blocks</h1>
+  <div id="shopGrid" class="grid grid-cols-4 gap-8"></div>
+</div>
+
+<!-- ... same footer ... -->
+
+<!-- HERO -->
+<div class="max-w-7xl mx-auto px-8 py-16 text-center">
+  <h1 class="text-6xl font-bold mb-4">Premium Organic Compounds</h1>
+  <p class="text-2xl text-slate-600">For research labs worldwide • COA included • 98%+ purity</p>
+  <a href="shop.html" class="mt-10 inline-block bg-emerald-600 text-white px-12 py-5 rounded-3xl text-lg font-semibold">Browse Catalog →</a>
+</div>
+
+<!-- FEATURED -->
+<div class="max-w-7xl mx-auto px-8 pb-20">
+  <h2 class="text-3xl font-semibold mb-8">Featured Products</h2>
+  <div id="featured" class="grid grid-cols-4 gap-8"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-slate-400 py-12">
+  <div class="max-w-7xl mx-auto px-8 text-center">
+    <div class="text-4xl font-mono text-emerald-400 mb-2" id="liveCount">128</div>
+    <p class="text-xs uppercase tracking-widest">Researchers browsing right now</p>
+    <p class="mt-8 text-xs">© 2026 ChemiPure • Research Use Only</p>
+  </div>
+</footer>
+
+<script>
+// same products array as above
+function renderShop() {
+  document.getElementById('shopGrid').innerHTML = products.map(p => `
+    <div onclick="goToProduct(${p.id})" class="bg-white rounded-3xl overflow-hidden shadow cursor-pointer">
+      <img src="${p.img}" class="w-full h-64 object-cover">
+      <div class="p-6">
+        <p class="font-mono text-xs text-emerald-600">${p.cas}</p>
+        <p class="font-semibold mt-2 line-clamp-2">${p.name}</p>
+        <p class="text-3xl font-bold mt-6">$${p.price}</p>
+      </div>
+    </div>
+  `).join('');
+}
+window.onload = renderShop;
+</script>
+</body>
+</html>
